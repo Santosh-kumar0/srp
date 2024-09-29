@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <style>
+      body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: hsl(214, 56%, 58%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calculator-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+#result {
+    margin-top: 15px;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Calculate Your Carbon Footprint</h1>
+        <div class="form-group">
+            <label for="travel">Travel Distance (km):</label>
+            <input type="number" id="travel" name="travel">
+        </div>
+        <div class="form-group">
+            <label for="mode">Travel Mode:</label>
+            <select id="mode">
+                <option value="car">Car</option>
+                <option value="bus">Bus</option>
+                <option value="train">Train</option>
+                <option value="airplane">Airplane</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="energy">Monthly Energy Consumption (kWh):</label>
+            <input type="number" id="energy" name="energy">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <p id="result"></p>
+    </div>
+    <script>
+      function calculate() {
+  const travelDistance = document.getElementById("travel").value;
+  const travelMode = document.getElementById("mode").value;
+  const energyConsumption = document.getElementById("energy").value;
+
+  let carbonFootprint = 0;
+
+  // Error handling for missing values
+  if (!travelDistance || !travelMode || !energyConsumption) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // Calculate travel emissions based on mode
+  switch (travelMode) {
+    case "car":
+      carbonFootprint += travelDistance * 0.18; // Average car emission per km (kg CO2)
+      break;
+    case "bus":
+      carbonFootprint += travelDistance * 0.09; // Average bus emission per km (kg CO2)
+      break;
+    case "train":
+      carbonFootprint += travelDistance * 0.04; // Average train emission per km (kg CO2)
+      break;
+    case "airplane":
+      carbonFootprint += travelDistance * 0.25; // Average airplane emission per km (kg CO2)
+      break;
+  }
+
+  // Add energy consumption emissions (assuming 0.5 kg CO2 per kWh)
+  carbonFootprint += energyConsumption * 0.5;
+
+  // Formatting the output with two decimal places
+  const formattedCarbonFootprint = carbonFootprint.toFixed(2);
+
+  const resultElement = document.getElementById("result");
+  resultElement.innerHTML = `Your estimated carbon footprint is ${formattedCarbonFootprint} kg CO2.`;
+
+  // Adding feedback based on carbon footprint
+  if (carbonFootprint < 2) {
+    resultElement.innerHTML += " Great job! You have a very low carbon footprint.";
+  } else if (carbonFootprint < 5) {
+    resultElement.innerHTML += " You're doing well! Keep up the good work.";
+  } else {
+    resultElement.innerHTML += " Consider ways to reduce your carbon footprint, like using public transport or renewable energy.";
+  }
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: hsl(214, 56%, 58%); /* Login form background color */
+}
+
+.login-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 15px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.login-container button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-container button:hover {
+    background-color: #3e8e41;
+}
+
+.signup-btn {
+    display: block; /* Display as block element for vertical placement */
+    margin-top: 15px; /* Add space above the button */
+    text-decoration: none; /* Remove underline from anchor tag */
+    color: #00BFFF; /* Blue color for signup button */
+    font-weight: bold; /* Make the text bolder for emphasis */
+}
+
+.signup-btn:hover {
+    color: #007bff; /* Change color on hover (optional) */
+}
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome!</h2>
+        <form action="index.html" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="signup.html" class="signup-btn">Signup</a>
+    </div>
+</body>
+</html>
